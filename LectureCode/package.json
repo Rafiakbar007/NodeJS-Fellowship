@@ -1,0 +1,12 @@
+{
+  "name": "lecturecode",
+  "version": "1.0.0",
+  "main": "L1-Introduction.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node L4-Architecture.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
