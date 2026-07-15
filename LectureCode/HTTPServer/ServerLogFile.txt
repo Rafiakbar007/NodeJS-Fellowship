@@ -1,3 +1,7 @@
 LOGS FROM INCOMING SERVER REQUESTS
-new request received: 1783944711095 on url /blogs
-new request received: 1783944711238 on url /favicon.ico
+new request received: 1783955657098 on url /
+new request received: 1783955657771 on url /favicon.ico
+new request received: 1783955679732 on url /about
+new request received: 1783955679898 on url /favicon.ico
+new request received: 1783955700282 on url /blogs
+new request received: 1783955700434 on url /favicon.ico

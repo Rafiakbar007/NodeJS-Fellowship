@@ -1,10 +1,12 @@
 const http = require("http");
 const fs = require("fs");
 
-// Create log file
+// Create log file Asynchronous that is non blocking
+
 fs.writeFile(
   "./ServerLogFile.txt",
   "LOGS FROM INCOMING SERVER REQUESTS\n",
+  
   (err) => {
     if (err) {
       console.log(err);
