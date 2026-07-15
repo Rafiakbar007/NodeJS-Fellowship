@@ -4,9 +4,12 @@
   "main": "L1-Introduction.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node L4-Architecture.js"
+    "start": "node L6-ServerURL.js"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "url": "^0.11.4"
+  }
 }
