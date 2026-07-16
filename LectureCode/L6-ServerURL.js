@@ -1,55 +1,101 @@
+const http = require("http");
+const fs = require("fs");
+const url = require("url");
 
-const http = require ("http")
-const fs = require("fs")
+// ==========================================================
+// CREATE LOG FILE
+// ==========================================================
 
-
-// create a file
+// This file will store all incoming request logs.
 
 fs.writeFile(
-    "./L6-ServerURL.txt",
-    "logs from requests",
-    (err) => {
-        if (err) {
-            console.log(err)
-        }
+  "./L6-ServerURL.txt",
+  "Logs From Requests\n",
+  (err) => {
+    if (err) {
+      console.log(err);
     }
-)
+  }
+);
 
+// ==========================================================
+// CREATE SERVER
+// ==========================================================
 
-// create server
-const myServer = http.createServer( (req, res) => {
+const myServer = http.createServer((req, res) => {
+  console.log("Request received");
 
-    console.log("request erceived")
+  // Create a log entry containing timestamp and URL
+  const log = `New Log: ${Date.now()} , ${req.url}\n`;
 
-    const log = `new log: ${Date.now()} , ${req.url}`
+  // Parse URL and query parameters
+  // Example:
+  // /about?myname=Rafia
+  // pathname => /about
+  // query => { myname: 'Rafia' }
 
-    fs.appendFile(
-        "./L6-ServerURL.txt",
-        log,
-        (err, data) => {
+  const myUrl = url.parse(req.url, true);
 
-             switch(req.url){
+  console.log(myUrl);
 
-           case '/' : res.end ("welcome to homepage")
-           break
+  // Save request log into file
+  fs.appendFile(
+    "./L6-ServerURL.txt",
+    log,
+    (err) => {
+      if (err) {
+        console.log(err);
+        res.end("Internal Server Error");
+        return;
+      }
 
-           case '/about' : res.end("welcome to abouts")
-           break
+      // ==========================================================
+      // ROUTING
+      // ==========================================================
 
-           case '/blogs': res.end (" welcome to blogs page")
-           break
+      switch (myUrl.pathname) {
 
-           default:
-           res.end("404 not found")
-        }
+        // Homepage Route
+        case "/":
+          res.end("Homepage");
+          break;
 
-        }
-    )
+        // About Route
+        // Example:
+        // http://localhost:8000/about?myname=Rafia
 
-})
+        case "/about":
+          const username = myUrl.query.myname;
+          res.end(`Hi, ${username}`);
+          break;
 
-//start server
+        // Search Route
+        // Example:
+        // http://localhost:8000/search?search_query=nodejs
+
+        case "/search":
+          const search = myUrl.query.search_query;
+          res.end(`Here's your result for ${search}`);
+          break;
+
+        case "/blogs":
+            const blogsID = myUrl.query.blog_id
+            const blogNmae = myUrl.query.blogNmae
+            res.end(`The blog you are looking for is ${blogNmae} with ${blogsID}`)
+            break;
+
+        // Invalid Route
+        default:
+          res.end("404 Not Found");
+      }
+    }
+  );
+});
+
+// ==========================================================
+// START SERVER
+// ==========================================================
 
 myServer.listen(8000, () => {
-    console.log("server listening on port 8000")
-})
+  console.log("Server listening on port 8000");
+});
