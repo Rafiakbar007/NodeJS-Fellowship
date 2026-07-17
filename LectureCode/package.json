@@ -4,12 +4,13 @@
   "main": "L1-Introduction.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node L9-Project1.js"
+    "start": "nodemon L10-HTTPHeaders.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
   }
 }

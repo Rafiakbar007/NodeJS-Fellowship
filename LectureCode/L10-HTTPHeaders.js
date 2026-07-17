@@ -5,24 +5,14 @@ const users = require('./MOCK_DATA.json')
 const app = express();
 const fs = require('fs')
 
+
+// HEADERS : extra information with request and responce 
+
 // midleware = plugin
 app.use(express.urlencoded({extended:false}))
 
-// midleware 1
-app.use((req, res, next) => {
-    console.log("hi am middleware 1")
-    next()
-})
 
-// midleware 2
-app.use((req, res, next) => {
-    console.log("hi am middleware 2")
-    next() 
-})
-
-
-
-// html data
+// html data of all users
 app.get('/users', (req,res) => {
     const html = `
     <ul>
@@ -32,8 +22,12 @@ app.get('/users', (req,res) => {
     res.send(html)
 })
 
-// ROUTES json data for api
+//  json data of all users
 app.get('/api/users', (req, res) => {
+   
+    res.setHeader("X-name", "hello world") // custom header
+    // always add X- to custom headers
+   console.log(req.headers)
     return res.json(users)
 })
 
@@ -43,8 +37,15 @@ app.route("/api/user/:id")
 //  get user using get
 
 .get((req, res) => {
+
     const id = Number(req.params.id)
-const user = users.find(user => user.id === id);
+    const user = users.find(user => user.id === id);
+    if(!user){
+        return res.status(404).json({
+            success: false,
+            message: "invalid ID, user not foound"
+        })
+    }
     return res.json(user)
 })
 
@@ -58,12 +59,13 @@ const user = users.find(user => user.id === id);
         user => user.id === id
     );
 
-    if (userIndex === -1) {
+    if (userIndex === -1 || !body.first_name || !body.last_name) {
         return res.status(404).json({
             success: false,
             message: "user not found"
         })
     }
+
 
     users[userIndex] = {
         ...users[userIndex],
@@ -136,7 +138,9 @@ app.post ("/api/user", (req, res) => {
             return res.status(201).json({
                 success: true,
                 id: users.length
-    })})})
+        })
+    })
+})
 
 
 // SERVER LISTEN
