@@ -1,0 +1,23 @@
+
+
+// rest api that supports json data
+
+hybrid server
+
+get / users - list all users in html documnt  -----done
+get /api/users - list all users json  -----done
+
+
+--> dynamic path parameter ----done
+--get/api/user/:id -> dynamic id
+get /api/users/ 1: get the user with id 1
+get /api/users/ 2: get the user with id 2
+
+POST /api/users : creare new users   ---done
+
+PATCH /api/user / 1 : update user with id 1
+
+DELETE /api/users / 1 : delete user with id 1
+
+
+mokaro.com for fake data of users
