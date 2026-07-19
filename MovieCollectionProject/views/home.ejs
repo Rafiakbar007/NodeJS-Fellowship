@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Collection</title>
+
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+
+        <h2>🎬 Movie Collection</h2>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/add-movie">Add Movie</a>
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <h1>All Movies</h1>
+
+        <ul>
+
+        <% movies.forEach(movie => { %>
+
+            <li>
+
+                <strong><%= movie.movieName %></strong>
+
+                - Rating: <%= movie.rating %>
+
+                <br><br>
+
+                Status:
+                <%= movie.watched ? "Watched ✅" : "Not Watched ❌" %>
+
+                <br><br>
+
+                <% if (!movie.watched) { %>
+
+                    <form
+                        action="/watched/<%= movie._id %>"
+                        method="POST"
+                    >
+
+                        <button type="submit">
+                            Mark As Watched
+                        </button>
+
+                    </form>
+
+                <% } %>
+
+                <br>
+
+                <form
+                    action="/delete/<%= movie._id %>"
+                    method="POST"
+                >
+
+                    <button type="submit">
+                        Delete
+                    </button>
+
+                </form>
+
+            </li>
+
+            <hr>
+
+        <% }) %>
+
+        </ul>
+
+    </div>
+
+</body>
+</html>

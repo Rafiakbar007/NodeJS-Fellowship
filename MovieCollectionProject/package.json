@@ -1,15 +1,16 @@
 {
-  "name": "lecturecode",
+  "name": "moviecollectionproject",
   "version": "1.0.0",
-  "main": "L1-Introduction.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon L12-MVC/index.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "ejs": "^6.0.1",
     "express": "^5.2.1",
     "mongoose": "^9.7.4",
     "nodemon": "^3.1.14"
