@@ -6,7 +6,8 @@ const {
     handleSignup,
     handleNewUserSingup,
     handleLogin,
-    handleUserLogin
+    handleUserLogin,
+    handleUserLogout,
 } = require('../controllers/userController')
 
 // define routes
@@ -15,6 +16,7 @@ router.get('/signup', handleSignup)
 router.post('/signup' , handleNewUserSingup)
 router.get('/login', handleLogin)
 router.post('/login', handleUserLogin)
+router.get('/logout', handleUserLogout)
 
 // export module
 

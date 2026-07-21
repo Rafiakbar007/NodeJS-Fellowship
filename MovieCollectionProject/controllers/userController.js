@@ -1,6 +1,6 @@
 const UserModel = require('../models/userModel')
 const {v4: uuidv4} = require("uuid")
-const { setUser } = require("../service/auth");
+const { setUser, removeUser } = require("../service/auth");
 
 const handleSignup = (req, res) => {
     res.render('signup')
@@ -46,7 +46,7 @@ const handleUserLogin = async (req, res) => {
 
     const sessionId = uuidv4();
 
-    // send cookie
+    // create cookie
 
     res.cookie(
         "uid",
@@ -58,11 +58,27 @@ const handleUserLogin = async (req, res) => {
     return res.redirect("/");
 }
 
+const handleUserLogout = (req, res) => {
+
+    console.log(req.cookies);
+
+    const sessionId = req.cookies?.uid;
+
+    if(sessionId){
+        removeUser(sessionId);
+    }
+
+    res.clearCookie("uid");
+
+    return res.redirect("/login");
+}
+
 
 
 module.exports = {
     handleSignup,
     handleNewUserSingup,
     handleLogin,
-    handleUserLogin
+    handleUserLogin,
+    handleUserLogout,
 }
