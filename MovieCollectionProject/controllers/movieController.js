@@ -4,7 +4,9 @@ const MovieModel = require("../models/movieModel")
 // function to get all movies
 const handleGetAllMovies = async(req, res) => {
 
-    const movies = await MovieModel.find({});
+    const movies = await MovieModel.find({
+        createdBy: req.user._id
+    });
 
     res.render("home", {
         movies
@@ -25,7 +27,8 @@ const handleCreateNewMovie = async(req, res) => {
     await MovieModel.create({
         movieName: body.movieName,
         rating: body.rating,
-        youtubeLink: body.youtubeLink
+        youtubeLink: body.youtubeLink,
+        createdBy: req.user._id
     })
 
     res.redirect("/")

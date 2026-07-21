@@ -1,7 +1,9 @@
 const express = require("express");
+const cookieParser = require("cookie-parser")
 const dbConnectionFun = require("./connection/dbConnection")
 const MovieModel = require("./models/movieModel")
 const movieRouter = require("./routes/movieRoute")
+const userRouter = require("./routes/userRoute")
 const app = express();
 
 // 2- ejs configure
@@ -11,6 +13,10 @@ app.set("view engine", "ejs")
 app.use(express.urlencoded({
     extended: false
 }));
+
+app.use("/", userRouter);
+
+app.use(cookieParser());
 
 app.use(express.static("public"));
 

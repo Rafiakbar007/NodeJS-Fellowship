@@ -14,13 +14,18 @@ const {
 } = require("../controllers/movieController")
 
 
+// IMPORT MIDDLEWARE
+const {
+    checkLoggedinUser
+} = require("../middleware/authMiddleware")
+
 // create routes
 
-router.get('/', handleGetAllMovies)
-router.get('/add-movie', showAddMoviePage)
-router.post('/movies', handleCreateNewMovie)
-router.post('/delete/:id', handleDeleteMovie)
-router.post('/watched/:id', handleMarkMovieWatch)
+router.get('/', checkLoggedinUser, handleGetAllMovies)
+router.get('/add-movie', checkLoggedinUser, showAddMoviePage)
+router.post('/movies', checkLoggedinUser, handleCreateNewMovie)
+router.post('/delete/:id', checkLoggedinUser, handleDeleteMovie)
+router.post('/watched/:id', checkLoggedinUser, handleMarkMovieWatch)
 
 
 
