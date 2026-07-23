@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Movie</title>
+    <title>Add Movie | Movie Collection</title>
 
     <link rel="stylesheet" href="/styles.css">
 </head>
@@ -11,54 +11,68 @@
 
     <nav class="navbar">
 
-        <h2>🎬 Movie Collection</h2>
+        <h2 class="logo">🎬 Movie Collection</h2>
 
         <div class="nav-links">
             <a href="/">Home</a>
-            <a href="/add-movie">Add Movie</a>
+            <a href="/add-movie" class="active">Add Movie</a>
+            <a href="/logout" class="logout-btn">Logout</a>
         </div>
 
     </nav>
 
-    <div class="container">
+    <section class="form-section">
 
-        <h1>Add New Movie</h1>
+        <div class="form-card">
 
-        <form action="/movies" method="POST">
+            <h1>Add a New Movie</h1>
 
-            <input
-                type="text"
-                name="movieName"
-                placeholder="Movie Name"
-                required
-            >
+            <p class="subtitle">
+                Build your personal movie library.
+            </p>
 
-            <br><br>
+            <form action="/movies" method="POST">
 
-            <input
-                type="number"
-                name="rating"
-                placeholder="Rating"
-                required
-            >
+                <div class="input-group">
+                    <label>Movie Name</label>
+                    <input
+                        type="text"
+                        name="movieName"
+                        placeholder="e.g. Interstellar"
+                        required
+                    >
+                </div>
 
-            <br><br>
+                <div class="input-group">
+                    <label>Rating</label>
+                    <input
+                        type="number"
+                        name="rating"
+                        min="1"
+                        max="10"
+                        placeholder="1 - 10"
+                        required
+                    >
+                </div>
 
-            <input
-                type="text"
-                name="youtubeLink"
-                placeholder="YouTube Link"
-            >
+                <div class="input-group">
+                    <label>YouTube Trailer</label>
+                    <input
+                        type="text"
+                        name="youtubeLink"
+                        placeholder="https://youtube.com/..."
+                    >
+                </div>
 
-            <br><br>
+                <button class="primary-btn" type="submit">
+                    + Add Movie
+                </button>
 
-            <button type="submit">
-                Add Movie
-            </button>
+            </form>
 
-        </form>
+        </div>
 
-    </div>
+    </section>
 
 </body>
 </html>

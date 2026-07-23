@@ -11,74 +11,113 @@
 
     <nav class="navbar">
 
-        <h2>🎬 Movie Collection</h2>
+        <h2 class="logo">🎬 Movie Collection</h2>
 
         <div class="nav-links">
-            <a href="/">Home</a>
+            <a href="/" class="active">Home</a>
             <a href="/add-movie">Add Movie</a>
             <a href="/signup">Signup</a>
             <a href="/login">Login</a>
-            <a href="/logout">Logout</a>
+            <a href="/logout" class="logout-btn">Logout</a>
         </div>
 
     </nav>
 
-    <div class="container">
+    <section class="hero">
 
-        <h1>All Movies</h1>
+        <h1>🎥 My Movie Library</h1>
 
-        <ul>
+        <p>
+            Organize, rate and track your favorite movies.
+        </p>
+
+    </section>
+
+    <div class="movie-grid">
 
         <% movies.forEach(movie => { %>
 
-            <li>
+            <div class="movie-card">
 
-                <strong><%= movie.movieName %></strong>
+                <div class="movie-header">
 
-                - Rating: <%= movie.rating %>
+                    <h2><%= movie.movieName %></h2>
 
-                <br><br>
+                    <span class="rating">
+                        ⭐ <%= movie.rating %>/10
+                    </span>
 
-                Status:
-                <%= movie.watched ? "Watched ✅" : "Not Watched ❌" %>
+                </div>
 
-                <br><br>
+                <div class="status">
 
-                <% if (!movie.watched) { %>
+                    <% if(movie.watched){ %>
+
+                        <span class="watched">
+                            ✅ Watched
+                        </span>
+
+                    <% } else { %>
+
+                        <span class="not-watched">
+                            ❌ Not Watched
+                        </span>
+
+                    <% } %>
+
+                </div>
+
+                <% if(movie.youtubeLink){ %>
+
+                    <a
+                        href="<%= movie.youtubeLink %>"
+                        target="_blank"
+                        class="youtube-btn"
+                    >
+                        ▶ Watch Trailer
+                    </a>
+
+                <% } %>
+
+                <div class="card-buttons">
+
+                    <% if(!movie.watched){ %>
+
+                        <form
+                            action="/watched/<%= movie._id %>"
+                            method="POST"
+                        >
+
+                            <button
+                                class="watch-btn"
+                                type="submit"
+                            >
+                                Mark as Watched
+                            </button>
+
+                        </form>
+
+                    <% } %>
 
                     <form
-                        action="/watched/<%= movie._id %>"
+                        action="/delete/<%= movie._id %>"
                         method="POST"
                     >
 
-                        <button type="submit">
-                            Mark As Watched
+                        <button
+                            class="delete-btn"
+                            type="submit"
+                        >
+                            Delete
                         </button>
 
                     </form>
 
-                <% } %>
+                </div>
 
-                <br>
-
-                <form
-                    action="/delete/<%= movie._id %>"
-                    method="POST"
-                >
-
-                    <button type="submit">
-                        Delete
-                    </button>
-
-                </form>
-
-            </li>
-
-            <hr>
+            </div>
 
         <% }) %>
-
-        </ul>
 
     </div>
 
