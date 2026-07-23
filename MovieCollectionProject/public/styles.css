@@ -1,64 +1,55 @@
-.form-section{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:85vh;
-    padding:40px;
+/* ==========================
+   GLOBAL
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.form-card{
-    width:450px;
+body{
+    font-family: 'Poppins', sans-serif;
+    background:#111827;
+    color:white;
+    min-height:100vh;
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+
+.navbar{
     background:#1f2937;
+    padding:18px 50px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+
+.logo{
     color:white;
-    padding:35px;
-    border-radius:18px;
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
+    font-size:26px;
+    font-weight:bold;
 }
 
-.form-card h1{
-    margin-bottom:8px;
-    text-align:center;
+.nav-links{
+    display:flex;
+    gap:22px;
 }
 
-.subtitle{
-    text-align:center;
-    color:#bdbdbd;
-    margin-bottom:25px;
-}
-
-.input-group{
-    margin-bottom:18px;
-}
-
-.input-group label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:600;
-}
-
-.input-group input{
-    width:100%;
-    padding:12px 15px;
-    border:none;
-    outline:none;
-    border-radius:10px;
-    font-size:15px;
-}
-
-.primary-btn{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    background:#2563eb;
+.nav-links a{
+    text-decoration:none;
     color:white;
-    font-size:16px;
-    cursor:pointer;
     transition:.3s;
+    font-weight:500;
 }
 
-.primary-btn:hover{
-    background:#1d4ed8;
+.nav-links a:hover{
+    color:#60a5fa;
 }
 
 .active{
@@ -69,20 +60,28 @@
     color:#ff6b6b !important;
 }
 
+/* ==========================
+   HERO SECTION
+========================== */
+
 .hero{
     text-align:center;
-    color:white;
-    margin:40px 0;
+    margin:45px 0;
 }
 
 .hero h1{
     font-size:42px;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
 .hero p{
     color:#cfcfcf;
+    font-size:17px;
 }
+
+/* ==========================
+   MOVIE GRID
+========================== */
 
 .movie-grid{
 
@@ -91,6 +90,7 @@
 
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
     gap:25px;
 
     padding-bottom:50px;
@@ -105,11 +105,9 @@
 
     padding:25px;
 
-    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
 
     transition:.3s;
-
-    box-shadow:0 15px 30px rgba(0,0,0,.2);
 
 }
 
@@ -187,6 +185,14 @@
 
     border-radius:8px;
 
+    transition:.3s;
+
+}
+
+.youtube-btn:hover{
+
+    background:#b91c1c;
+
 }
 
 .card-buttons{
@@ -194,6 +200,8 @@
     display:flex;
 
     gap:10px;
+
+    flex-wrap:wrap;
 
 }
 
@@ -211,6 +219,14 @@
 
     cursor:pointer;
 
+    transition:.3s;
+
+}
+
+.watch-btn:hover{
+
+    background:#15803d;
+
 }
 
 .delete-btn{
@@ -227,16 +243,202 @@
 
     cursor:pointer;
 
-}
-
-.watch-btn:hover{
-
-    background:#15803d;
+    transition:.3s;
 
 }
 
 .delete-btn:hover{
 
     background:#dc2626;
+
+}
+
+/* ==========================
+   FORMS
+========================== */
+
+.form-section{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:85vh;
+
+    padding:40px;
+
+}
+
+.form-card{
+
+    width:450px;
+
+    background:#1f2937;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.form-card h1{
+
+    text-align:center;
+
+    margin-bottom:8px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#cfcfcf;
+
+    margin-bottom:25px;
+
+}
+
+.input-group{
+
+    margin-bottom:18px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:13px 15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+.input-group input:focus{
+
+    outline:2px solid #2563eb;
+
+}
+
+.primary-btn{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.primary-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+.bottom-text{
+
+    margin-top:22px;
+
+    text-align:center;
+
+    color:#cfcfcf;
+
+}
+
+.bottom-text a{
+
+    color:#60a5fa;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+.bottom-text a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        padding:20px;
+
+    }
+
+    .nav-links{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+    }
+
+    .movie-grid{
+
+        width:95%;
+
+    }
+
+    .movie-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+    }
+
+    .form-card{
+
+        width:100%;
+
+    }
 
 }

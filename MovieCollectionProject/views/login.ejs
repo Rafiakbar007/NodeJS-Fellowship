@@ -1,39 +1,82 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Movie Collection</title>
+
     <link rel="stylesheet" href="/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <h1>Login</h1>
+    <nav class="navbar">
 
-    <form action="/login" method="POST">
+        <h2 class="logo">🎬 Movie Collection</h2>
 
-        <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-        >
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/signup">Signup</a>
+            <a href="/login" class="active">Login</a>
+        </div>
 
-        <br><br>
+    </nav>
 
-        <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-        >
+    <section class="form-section">
 
-        <br><br>
+        <div class="form-card">
 
-        <button type="submit">
-            Login
-        </button>
+            <h1>Welcome Back 👋</h1>
 
-    </form>
+            <p class="subtitle">
+                Login to access your personal movie collection.
+            </p>
+
+            <form action="/login" method="POST">
+
+                <div class="input-group">
+
+                    <label>Email Address</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+                <button class="primary-btn" type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="bottom-text">
+                Don't have an account?
+                <a href="/signup">Create One</a>
+            </p>
+
+        </div>
+
+    </section>
 
 </body>
 </html>
