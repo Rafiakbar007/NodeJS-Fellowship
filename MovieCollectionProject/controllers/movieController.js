@@ -5,7 +5,7 @@ const MovieModel = require("../models/movieModel")
 const handleGetAllMovies = async(req, res) => {
 
     const movies = await MovieModel.find({
-        createdBy: req.user._id
+        createdBy: req.user.id
     });
 
     res.render("home", {

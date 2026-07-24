@@ -1,5 +1,6 @@
 const {getUser} = require("../service/auth")
 const jwt = require("jsonwebtoken");
+const UserModel = require("../models/userModel");
 
 // function checkLoggedinUser (
 //     req,
@@ -30,7 +31,7 @@ const jwt = require("jsonwebtoken");
 
 // }
 
-function checkForAuthentication(
+async function checkForAuthentication(
     req,
     res,
     next
@@ -42,10 +43,12 @@ function checkForAuthentication(
 
     try {
 
-        const user = jwt.verify(
+        const decoded  = jwt.verify(
             token,
             process.env.JWT_SECRET
         );
+
+        const user = await UserModel.findById(decoded.id);
 
         req.user = user;
 
