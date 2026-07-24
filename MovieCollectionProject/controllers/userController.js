@@ -1,6 +1,11 @@
 const UserModel = require('../models/userModel')
+// for statefull authentication
 const {v4: uuidv4} = require("uuid")
 const { setUser, removeUser } = require("../service/auth");
+
+// for stateless authen
+const jwt = require('jsonwebtoken')
+
 
 const handleSignup = (req, res) => {
     res.render('signup')
@@ -41,34 +46,47 @@ const handleUserLogin = async (req, res) => {
     if(user.password !== password){
         return res.redirect("signup")
     }
+//      // STATEFULL AUTHENTICATION
+//     //generate session id
 
-    //generate session id
+//     const sessionId = uuidv4();
 
-    const sessionId = uuidv4();
+//     //create cookie
 
-    // create cookie
+//    res.cookie(
+//        "uid",
+//        sessionId
+//    )
 
-    res.cookie(
-        "uid",
-        sessionId
-    )
+//    setUser(sessionId, user);
 
-    setUser(sessionId, user);
+    // STATELESS AUTHENTICATION
+
+    //create jwt token using .sign
+    const token = jwt.sign(
+        {id : user._id } , // payload
+        process.env.JWT_SECRET  // token generated automatically by jsonwebtoken
+    );
+
+    //send token to cookie
+    res.cookie("token", token, {
+    httpOnly: true,
+    });
 
     return res.redirect("/");
 }
 
 const handleUserLogout = (req, res) => {
 
-    console.log(req.cookies);
+    //console.log(req.cookies);
 
-    const sessionId = req.cookies?.uid;
+    // const sessionId = req.cookies?.uid;
 
-    if(sessionId){
-        removeUser(sessionId);
-    }
+    // if(sessionId){
+    //     removeUser(sessionId);
+    // }
 
-    res.clearCookie("uid");
+    res.clearCookie("token");
 
     return res.redirect("/login");
 }

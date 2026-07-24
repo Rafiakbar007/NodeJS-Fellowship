@@ -1,35 +1,60 @@
+// ==============================
+// 1. Load Environment Variables
+// ==============================
+require("dotenv").config();
+
+// ==============================
+// 2. Import Packages
+// ==============================
 const express = require("express");
-const cookieParser = require("cookie-parser")
-const dbConnectionFun = require("./connection/dbConnection")
-const MovieModel = require("./models/movieModel")
-const movieRouter = require("./routes/movieRoute")
-const userRouter = require("./routes/userRoute")
+const cookieParser = require("cookie-parser");
+
+// ==============================
+// 3. Import Local Files
+// ==============================
+const dbConnectionFun = require("./connection/dbConnection");
+const movieRouter = require("./routes/movieRoute");
+const userRouter = require("./routes/userRoute");
+
+// ==============================
+// 4. Create Express App
+// ==============================
 const app = express();
 
-// 2- ejs configure
-app.set("view engine", "ejs")
+// ==============================
+// 5. Connect Database
+// ==============================
+dbConnectionFun(process.env.MONGO_URI);
 
-//middleware
-app.use(express.urlencoded({
-    extended: false
-}));
+// ==============================
+// 6. Set View Engine
+// ==============================
+app.set("view engine", "ejs");
 
-app.use("/", userRouter);
+// ==============================
+// 7. Global Middleware
+// ==============================
 
+// Parse form data
+app.use(express.urlencoded({ extended: false }));
+
+// Parse cookies
 app.use(cookieParser());
 
+// Serve static files (CSS, Images, JS)
 app.use(express.static("public"));
 
-// 1- server create and listen
-const PORT = 8001;
+// ==============================
+// 8. Routes
+// ==============================
+app.use("/", userRouter);
+app.use("/", movieRouter);
+
+// ==============================
+// 9. Start Server
+// ==============================
+const PORT = process.env.PORT || 8000;
+
 app.listen(PORT, () => {
-    console.log("server listening at port: ", PORT)
-})
-
-// 3- connect with database
-dbConnectionFun("mongodb://127.0.0.1:27017/movieDB")
-
-// routes
-
-app.use("/" , movieRouter)
-
+    console.log(`🚀 Server running on port ${PORT}`);
+});
