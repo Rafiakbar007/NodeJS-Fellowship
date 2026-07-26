@@ -10,3 +10,7 @@ export const updateStudent = (id, studentData) =>
 
 export const deleteStudent = (id) =>
   api.delete(`/students/${id}`);
+
+export const getStudentById = (id) => {
+  return api.get(`/students/${id}`);
+};

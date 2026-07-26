@@ -5,6 +5,8 @@ import Signup from "../pages/Signup";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import AddStudent from "../pages/AddStudents";
+import EditStudent from "../pages/EditStudents";
+import StudentDetails from "../components/students/StudentDetail";
 
 function App() {
   return (
@@ -21,6 +23,16 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="/add-student" element={<AddStudent />} />
+
+        <Route
+  path="/edit-student/:id"
+  element={<EditStudent />}
+/>
+
+<Route
+  path="/student/:id"
+  element={<StudentDetails />}
+/>
 
       </Routes>
 

@@ -73,9 +73,7 @@ function Dashboard() {
                 key={student._id}
                 student={student}
                 onDelete={handleDeleteStudent}
-                onEdit={() =>
-                  alert("Edit page will be added in the next step.")
-                }
+                onEdit={student._id}
               />
             ))}
           </div>

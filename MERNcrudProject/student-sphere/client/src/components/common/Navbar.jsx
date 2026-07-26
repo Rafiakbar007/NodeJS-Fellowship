@@ -19,18 +19,7 @@ function Navbar() {
       {/* Right */}
       <div className="flex items-center gap-6">
 
-        {/* Search */}
-        <div className="relative">
-
-          <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-
-          <input
-            type="text"
-            placeholder="Search students..."
-            className="w-72 border border-slate-300 rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
-          />
-
-        </div>
+       
 
         {/* Notification */}
         <button className="text-2xl text-slate-500 hover:text-blue-600 transition">

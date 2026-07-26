@@ -29,24 +29,31 @@ function StudentForm({
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
+  try {
     if (editingStudent) {
       await onUpdateStudent(editingStudent._id, formData);
     } else {
       await onAddStudent(formData);
     }
 
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      department: "",
-      semester: "",
-      cgpa: "",
-      address: "",
-    });
-  };
+    // Clear form only when adding a student
+    if (!editingStudent) {
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        department: "",
+        semester: "",
+        cgpa: "",
+        address: "",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   return (
     <form

@@ -1,11 +1,11 @@
-
-
+import { useNavigate } from "react-router-dom";
 
 function StudentCard({
   student,
-  onEdit,
   onDelete,
 }) {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-white rounded-xl shadow-md p-6 border border-slate-200 hover:shadow-lg transition">
 
@@ -16,33 +16,27 @@ function StudentCard({
       <div className="space-y-2 text-slate-600">
 
         <p>
-          <span className="font-medium">📧 Email:</span>{" "}
-          {student.email}
+          <span className="font-medium">📧 Email:</span> {student.email}
         </p>
 
         <p>
-          <span className="font-medium">📱 Phone:</span>{" "}
-          {student.phone}
+          <span className="font-medium">📱 Phone:</span> {student.phone}
         </p>
 
         <p>
-          <span className="font-medium">🎓 Department:</span>{" "}
-          {student.department}
+          <span className="font-medium">🎓 Department:</span> {student.department}
         </p>
 
         <p>
-          <span className="font-medium">📚 Semester:</span>{" "}
-          {student.semester}
+          <span className="font-medium">📚 Semester:</span> {student.semester}
         </p>
 
         <p>
-          <span className="font-medium">⭐ CGPA:</span>{" "}
-          {student.cgpa}
+          <span className="font-medium">⭐ CGPA:</span> {student.cgpa}
         </p>
 
         <p>
-          <span className="font-medium">📍 Address:</span>{" "}
-          {student.address}
+          <span className="font-medium">📍 Address:</span> {student.address}
         </p>
 
       </div>
@@ -50,7 +44,14 @@ function StudentCard({
       <div className="flex gap-3 mt-6">
 
         <button
-          onClick={() => onEdit(student)}
+  onClick={() => navigate(`/student/${student._id}`)}
+  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-lg transition"
+>
+  View
+</button>
+
+        <button
+          onClick={() => navigate(`/edit-student/${student._id}`)}
           className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
         >
           Edit
