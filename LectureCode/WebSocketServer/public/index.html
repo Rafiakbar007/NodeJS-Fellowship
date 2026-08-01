@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple WebSocket Chat</title>
+</head>
+<body>
+
+<h2>Simple WebSocket Chat</h2>
+
+<p id="myId"></p>
+
+<input
+    id="receiver"
+    placeholder="Receiver ID"
+/>
+
+<br><br>
+
+<input
+    id="message"
+    placeholder="Message"
+/>
+
+<br><br>
+
+<button onclick="sendMessage()">
+    Send
+</button>
+
+<h3>Messages</h3>
+
+<div id="messages"></div>
+
+<script>
+
+const socket = new WebSocket("ws://localhost:1500");
+
+socket.onmessage = (event) => {
+
+    const div = document.getElementById("messages");
+
+    div.innerHTML += "<p>" + event.data + "</p>";
+
+    if(event.data.startsWith("Your ID:")){
+        document.getElementById("myId").innerHTML = event.data;
+    }
+
+};
+
+function sendMessage(){
+
+    const receiver =
+        document.getElementById("receiver").value;
+
+    const message =
+        document.getElementById("message").value;
+
+    socket.send(receiver + " " + message);
+
+}
+
+</script>
+
+</body>
+</html>

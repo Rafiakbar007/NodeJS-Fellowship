@@ -1,18 +1,17 @@
 {
-  "name": "lecturecode",
+  "name": "websocketserver",
   "version": "1.0.0",
-  "main": "L1-Introduction.js",
+  "main": "V33-WebSocket.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node V33-WebSocket"
+    "start": "node server.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "express": "^5.2.1",
-    "mongoose": "^9.7.4",
-    "nodemon": "^3.1.14",
     "ws": "^8.21.1"
   }
 }
